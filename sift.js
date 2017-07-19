@@ -1,4 +1,5 @@
 var sift = require('sift');
+var ObjectId = require('bson-objectid');
 
 //use a custom compare function so we can search on ObjectIDs
 var compare = sift.compare;

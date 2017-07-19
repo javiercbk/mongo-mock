@@ -267,6 +267,14 @@ describe('mock tests', function () {
         });
       });
     });
+
+    it.skip('should properly find an object using a mongoose\'s object id');
+    it.skip('should properly store an object translating a mongoose\'s object id');
+    it.skip('should translate mongoose\'s object ids');
+    it.skip('should bulk update one');
+    it.skip('should bulk update many');
+    it.skip('should bulk unordered operations');
+    it.skip('should bulk ordered operations');
   });
 
   describe('cursors', function() {
