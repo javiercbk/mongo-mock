@@ -152,7 +152,7 @@ describe('mock tests', function () {
       //query, data, options, callback
       collection.update({test:123}, {$set:{foo:"bar"}}, function (err, result) {
         if(err) return done(err);
-        result.n.should.equal(1);
+        result.result.n.should.equal(1);
 
         collection.findOne({test:123}, function (err, doc) {
           if(err) return done(err);
@@ -165,7 +165,7 @@ describe('mock tests', function () {
     it('should update multi', function (done) {
       collection.update({}, {$set:{foo:"bar"}}, {multi:true}, function (err, result) {
         if(err) return done(err);
-        result.n.should.equal(5);
+        result.result.n.should.equal(5);
 
         collection.find({foo:"bar"}).count(function (err, n) {
           if(err) return done(err);
@@ -182,7 +182,7 @@ describe('mock tests', function () {
 
         collection.update({test:1}, {test:1,bar:"none"}, {upsert:true}, function (err, result) {
           if(err) return done(err);
-          result.n.should.equal(1);
+          result.result.n.should.equal(1);
 
           collection.find({test:1}).count(function (err, n) {
             if(err) return done(err);
@@ -195,7 +195,7 @@ describe('mock tests', function () {
     it('should add to set (default)', function (done) {
       collection.update({test:123}, {$addToSet:{ boo:"bar"}}, function (err, result) {
         if(err) return done(err);
-        result.n.should.equal(1);
+        result.result.n.should.equal(1);
         collection.findOne({test:123}, function (err, doc) {
           if(err) return done(err);
           doc.should.have.property("boo", ["bar"]);
@@ -206,7 +206,7 @@ describe('mock tests', function () {
     it('should add to set', function (done) {
       collection.update({test:123}, {$addToSet:{ boo:"foo"}}, function (err, result) {
         if(err) return done(err);
-        result.n.should.equal(1);
+        result.result.n.should.equal(1);
         collection.findOne({test:123}, function (err, doc) {
           if(err) return done(err);
           doc.should.have.property("boo", ["bar", "foo"]);
@@ -217,7 +217,7 @@ describe('mock tests', function () {
     it('should not add to set already existing item', function (done) {
       collection.update({test:123}, {$addToSet:{ boo:"bar"}}, function (err, result) {
         if(err) return done(err);
-        result.n.should.equal(1);
+        result.result.n.should.equal(1);
         collection.findOne({test:123}, function (err, doc) {
           if(err) return done(err);
           doc.should.have.property("boo", ["bar", "foo"]);
@@ -231,7 +231,7 @@ describe('mock tests', function () {
         if (err) done(err);
         collection.update({test:333}, { $inc: { incTest: 1, 'multiIncTest.foo': 2}}, function (err, result) {
           if (err) done(err);
-          result.n.should.equal(1);
+          result.result.n.should.equal(1);
           collection.findOne({test:333}, function (err, doc) {
             if (err) done(err);
             doc.incTest.should.equal(2);
@@ -244,7 +244,7 @@ describe('mock tests', function () {
     it('should decrement a number', function(done) {
       collection.update({test:333}, { $inc: { incTest: -1, 'multiIncTest.foo': -2, 'some.new.key': 42}}, function (err, result) {
         if (err) done(err);
-        result.n.should.equal(1);
+        result.result.n.should.equal(1);
         collection.findOne({test:333}, function (err, doc) {
           if (err) done(err);
           doc.incTest.should.equal(1);
