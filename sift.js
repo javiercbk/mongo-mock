@@ -5,7 +5,7 @@ var ObjectId = require('mongodb').ObjectID;
 var compare = sift.compare;
 sift.compare = function(a, b) {
   if(a && b && a._bsontype && b._bsontype) {
-    return a.equals(b)? 0 : (compare(time(a), time(b)) || compare(a.str, b.str));
+    return a.equals(b) ? 0 : -1;
   }
   return compare(a,b);
 };
