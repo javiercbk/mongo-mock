@@ -1,5 +1,5 @@
 var sift = require('sift');
-var ObjectId = require('bson-objectid');
+var ObjectId = require('mongodb').ObjectID;
 
 //use a custom compare function so we can search on ObjectIDs
 var compare = sift.compare;

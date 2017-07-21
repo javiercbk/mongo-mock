@@ -126,7 +126,7 @@ describe('mock tests', function () {
         if(err) return done(err);
         (!!doc).should.be.true;
         doc.should.have.property('_id');
-        id.str.should.eql(doc._id.str);
+        id.str.should.eql(doc._id.toString());
         doc.should.have.property('test', 456);
         done();
       });
